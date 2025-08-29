@@ -49,8 +49,13 @@
   position: absolute;
 }
 
+.carousel-control-prev-icon:hover,
+.carousel-control-next-icon:hover {
+    background-color: #5c9ef4;
+}
+
 .carousel-control-prev-icon {
-    left: 0px;
+    left: -150%;
 }
 .work-item:hover .work-intro {
     font-size: 15px;
@@ -58,5 +63,19 @@
     letter-spacing: -0.00200em;
     line-height: 1.1;
 }
+.btn-mod, a.btn-mod {
+    background-color:#0081c6;
+}
+
+.btn-mod:hover, .btn-mod:focus, a.btn-mod:hover, a.btn-mod:focus {
+    background-color: #0081c6;
+}
 
 
+.ci-icon:before, .mt-icon:before {
+    background: #0081c6;
+}
+
+.footer-social-links a:hover::before {
+    background: #0081c6;
+}
