@@ -26,3 +26,41 @@
 {
     background: #00000000;
 }
+
+/* carousel next prev icon */
+.carousel-control-prev,
+.carousel-control-next {
+    width: 5%;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+
+    display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: #888888;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  position: absolute;
+}
+
+.carousel-control-prev-icon {
+    left: 0px;
+}
+.work-item:hover .work-intro {
+    font-size: 15px;
+    font-weight: 100;
+    letter-spacing: -0.00200em;
+    line-height: 1.1;
+}
+
+.work-item:hover .work-intro
+{
+    display: none;
+}
+
