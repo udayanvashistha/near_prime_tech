@@ -1240,6 +1240,26 @@ Vertiv, and Schneider
   transform: translateY(0);
 }
 
+/* hover-reveal text styling */
+.branding .work-intro p.hover-reveal {
+  color: black;
+  text-shadow: 0 2px 8px rgba(0,0,0,.45);
+  font-weight: 600;
+  opacity: 1;
+  transform: translateY(0px); /* nice slide-in effect */
+  transition: opacity .3s ease, transform .3s ease;
+  max-width: 90%;
+  word-wrap: break-word;
+}
+
+/* show on hover */
+ .branding:hover .work-intro p.hover-reveal,
+.branding:focus-within .work-intro p.hover-reveal {
+  opacity: 1;
+  transform: translateY(0);
+  color: white;
+}
+
 /* For 2 items per row */
 .work-grid-2 .work-item {
   width: 45%;      /* Two items per row */
@@ -1513,9 +1533,9 @@ Vertiv, and Schneider
       const singles = [
         {
           id: 'chart2',
-          label: 'Small Manufacturers',
-          data: [65, 59, 90, 10, 15, 15],
-          color: '255, 99, 132'
+          label: 'Near Prime',
+          data: [50, 60, 70, 80, 90, 100],
+          color: '75, 192, 192'
         },
         {
           id: 'chart3',
