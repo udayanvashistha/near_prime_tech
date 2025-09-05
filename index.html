@@ -1151,7 +1151,7 @@ Vertiv, and Schneider
                         </div>
                         
                     </div>
-                    <!-- End Footer Text -->
+                    <!-- End Footer Text --> 
                     
                  </div>
                  
@@ -1394,171 +1394,215 @@ Vertiv, and Schneider
 })();
 </script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-   <script>
-    // script.js
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const labels = [
+        'Safety',
+        'Specific Energy',
+        'Specific Power',
+        'Lifespan',
+        'Cost',
+        'Fast Charge'
+      ];
 
-document.addEventListener('DOMContentLoaded', () => {
-  const labels = [
-    'Safety',
-    'Specific Energy',
-    'Specific Power',
-    'Lifespan',
-    'Cost',
-    'Fast Charge'
-  ];
-
-  // 1) Composite chart: all four manufacturers together
-  const compositeData = [
-    { name: 'Small Manufacturers', data: [65, 59, 90, 10,  15, 15], color: '255,  99, 132' },
-    { name: 'Tesla',               data: [28, 48, 40, 19,  96, 27],  color: ' 54, 162, 235' },
-    { name: 'CATL',                data: [35, 75, 60, 45,  70, 80],  color: '255, 206,  86' },
-    { name: 'Near Prime',          data: [50, 60, 70, 80,  90,100],  color: ' 75, 192, 192' }
-  ];
-
-  const ctx1 = document.getElementById('chart1').getContext('2d');
-  new Chart(ctx1, {
-    type: 'radar',
-    data: {
-      labels,
-      datasets: compositeData.map(item => ({
-        label: item.name,
-        data: item.data,
-        fill: true,
-        backgroundColor: `rgba(${item.color}, 0.2)`,
-        borderColor:       `rgba(${item.color}, 1)`,
-        pointBackgroundColor: `rgba(${item.color}, 1)`,
-        pointBorderColor:  '#fff',
-        pointHoverBackgroundColor: '#fff',
-        pointHoverBorderColor:       `rgba(${item.color}, 1)`
-      }))
-    },
-    options: {
-      responsive: true,
-      animation: {
-        duration: 1800,
-        easing: 'easeInOutQuart',
-        animateRotate: true,
-        animateScale: true
-      },
-      transitions: {
-        active: {
-          animation: {
-            duration: 600,
-            easing: 'easeOutElastic'
-          }
-        }
-      },
-      interaction: {
-        mode: 'nearest',
-        intersect: true
-      },
-      plugins: {
-        title: {
-          display: true,
-          text: 'All Manufacturers',
-          font: { size: 18, weight: 'bold' },
-          color: '#333'
+      const compositeDatasets = [
+        {
+          name: 'Small Manufacturers',
+          data: [65, 59, 90, 10, 15, 15],
+          color: '255, 99, 132'
         },
-        legend: { position: 'top' }
-      },
-      scales: {
-        r: {
-          angleLines: { color: '#ccc', lineWidth: 1 },
-          grid:       { color: 'rgba(0,0,0,0.05)' },
-          pointLabels: { color: '#555', font: { size: 12 } },
-          ticks: {
-            stepSize: 20,
-            color: '#666',
-            backdropColor: 'transparent',
-            font: { size: 10 }
+        {
+          name: 'Tesla',
+          data: [28, 48, 40, 19, 96, 27],
+          color: '54, 162, 235'
+        },
+        {
+          name: 'CATL',
+          data: [35, 75, 60, 45, 70, 80],
+          color: '255, 206, 86'
+        },
+        {
+          name: 'Near Prime',
+          data: [50, 60, 70, 80, 90, 100],
+          color: '75, 192, 192'
+        }
+      ];
+
+      // Chart 1: Composite radar with custom legend icons
+      new Chart(
+        document.getElementById('chart1').getContext('2d'),
+        {
+          type: 'radar',
+          data: {
+            labels,
+            datasets: compositeDatasets.map(item => ({
+              label: item.name,
+              data: item.data,
+              fill: true,
+              backgroundColor: `rgba(${item.color}, 0.2)`,
+              borderColor: `rgba(${item.color}, 1)`,
+              pointBackgroundColor: `rgba(${item.color}, 1)`,
+              pointBorderColor: '#fff',
+              pointHoverBackgroundColor: '#fff',
+              pointHoverBorderColor: `rgba(${item.color}, 1)`
+            }))
           },
-          suggestedMin: 0,
-          suggestedMax: 100
-        }
-      },
-      elements: {
-        line:  { borderWidth: 3 },
-        point: { radius: 5, hoverRadius: 10 }
-      }
-    }
-  });
-
-  // 2–4) Single-dataset charts
-  const singles = [
-    { id: 'chart2', label: 'Small Manufacturers', data: [65, 59, 90, 10,  15, 15], color: '255,  99, 132' },
-    { id: 'chart3', label: 'Tesla',               data: [28, 48, 40, 19,  96, 27],  color: ' 54, 162, 235' },
-    { id: 'chart4', label: 'CATL',                data: [35, 75, 60, 45,  70, 80],  color: '255, 206,  86' }
-  ];
-
-  singles.forEach(cfg => {
-    const ctx = document.getElementById(cfg.id).getContext('2d');
-    new Chart(ctx, {
-      type: 'radar',
-      data: {
-        labels,
-        datasets: [{
-          label: cfg.label,
-          data: cfg.data,
-          fill: true,
-          backgroundColor: `rgba(${cfg.color}, 0.2)`,
-          borderColor:       `rgba(${cfg.color}, 1)`,
-          pointBackgroundColor: `rgba(${cfg.color}, 1)`,
-          pointBorderColor:  '#fff',
-          pointHoverBackgroundColor: '#fff',
-          pointHoverBorderColor:       `rgba(${cfg.color}, 1)`
-        }]
-      },
-      options: {
-        responsive: true,
-        animation: {
-          duration: 1800,
-          easing: 'easeInOutQuart',
-          animateRotate: true,
-          animateScale: true
-        },
-        transitions: {
-          active: {
+          options: {
+            responsive: true,
             animation: {
-              duration: 600,
-              easing: 'easeOutElastic'
+              duration: 1800,
+              easing: 'easeInOutQuart',
+              animateRotate: true,
+              animateScale: true
+            },
+            transitions: {
+              active: {
+                animation: {
+                  duration: 600,
+                  easing: 'easeOutElastic'
+                }
+              }
+            },
+            interaction: {
+              mode: 'nearest',
+              intersect: true
+            },
+            plugins: {
+              title: {
+                display: true,
+                text: 'All Manufacturers',
+                font: { size: 18, weight: 'bold' },
+                color: '#333'
+              },
+              legend: {
+                position: 'top',
+                labels: {
+                  usePointStyle: true,
+                  pointStyle: 'circle',
+                  boxWidth: 16,
+                  color: '#333',
+                  font: { size: 14, weight: '500' },
+                  padding: 12
+                }
+              }
+            },
+            scales: {
+              r: {
+                angleLines: { color: '#ccc', lineWidth: 1 },
+                grid: { color: 'rgba(0,0,0,0.05)' },
+                pointLabels: { color: '#555', font: { size: 12 } },
+                ticks: {
+                  stepSize: 20,
+                  color: '#666',
+                  backdropColor: 'transparent',
+                  font: { size: 10 }
+                },
+                suggestedMin: 0,
+                suggestedMax: 100
+              }
+            },
+            elements: {
+              line: { borderWidth: 3 },
+              point: { radius: 5, hoverRadius: 10 }
             }
           }
-        },
-        interaction: { mode: 'nearest', intersect: true },
-        plugins: {
-          title: {
-            display: true,
-            text: cfg.label,
-            font: { size: 16, weight: '600' },
-            color: '#333'
-          },
-          legend: { display: false }
-        },
-        scales: {
-          r: {
-            angleLines: { color: '#ccc', lineWidth: 1 },
-            grid:       { color: 'rgba(0,0,0,0.05)' },
-            pointLabels: { color: '#555', font: { size: 12 } },
-            ticks: {
-              stepSize: 20,
-              color: '#666',
-              backdropColor: 'transparent',
-              font: { size: 10 }
-            },
-            suggestedMin: 0,
-            suggestedMax: 100
-          }
-        },
-        elements: {
-          line:  { borderWidth: 3 },
-          point: { radius: 5, hoverRadius: 10 }
         }
-      }
-    });
-  });
-});
-  </script>
+      );
 
+      // Charts 2–4: Single-dataset radars
+      const singles = [
+        {
+          id: 'chart2',
+          label: 'Small Manufacturers',
+          data: [65, 59, 90, 10, 15, 15],
+          color: '255, 99, 132'
+        },
+        {
+          id: 'chart3',
+          label: 'Tesla',
+          data: [28, 48, 40, 19, 96, 27],
+          color: '54, 162, 235'
+        },
+        {
+          id: 'chart4',
+          label: 'CATL',
+          data: [35, 75, 60, 45, 70, 80],
+          color: '255, 206, 86'
+        }
+      ];
+
+      singles.forEach(cfg => {
+        new Chart(
+          document.getElementById(cfg.id).getContext('2d'),
+          {
+            type: 'radar',
+            data: {
+              labels,
+              datasets: [
+                {
+                  label: cfg.label,
+                  data: cfg.data,
+                  fill: true,
+                  backgroundColor: `rgba(${cfg.color}, 0.2)`,
+                  borderColor: `rgba(${cfg.color}, 1)`,
+                  pointBackgroundColor: `rgba(${cfg.color}, 1)`,
+                  pointBorderColor: '#fff',
+                  pointHoverBackgroundColor: '#fff',
+                  pointHoverBorderColor: `rgba(${cfg.color}, 1)`
+                }
+              ]
+            },
+            options: {
+              responsive: true,
+              animation: {
+                duration: 1500,
+                easing: 'easeInOutQuart',
+                animateRotate: true,
+                animateScale: true
+              },
+              transitions: {
+                active: {
+                  animation: {
+                    duration: 600,
+                    easing: 'easeOutElastic'
+                  }
+                }
+              },
+              interaction: { mode: 'nearest', intersect: true },
+              plugins: {
+                title: {
+                  display: true,
+                  text: cfg.label,
+                  color: '#333',
+                  font: { size: 16, weight: '600' }
+                },
+                legend: { display: false }
+              },
+              scales: {
+                r: {
+                  angleLines: { color: '#ccc', lineWidth: 1 },
+                  grid: { color: 'rgba(0,0,0,0.05)' },
+                  pointLabels: { color: '#555', font: { size: 12 } },
+                  ticks: {
+                    stepSize: 20,
+                    color: '#666',
+                    backdropColor: 'transparent',
+                    font: { size: 10 }
+                  },
+                  suggestedMin: 0,
+                  suggestedMax: 100
+                }
+              },
+              elements: {
+                line: { borderWidth: 3 },
+                point: { radius: 5, hoverRadius: 10 }
+              }
+            }
+          }
+        );
+      });
+    });
+  </script>
         
         
     </body>
