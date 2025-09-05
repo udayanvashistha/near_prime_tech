@@ -654,38 +654,41 @@ Vertiv, and Schneider
       </li>
 
       <!-- Green Leaf (Lightbox) -->
-      <li class="work-item mix photography">
-        <a href="images/npi7.jpg" class="work-lightbox-link">
-          <div class="work-img">
-            <div class="work-img-bg wow-p scalexIn"></div>
-            <img src="images/clients-logos/graph1.png" alt="Green Leaf"
-                 class="wow-p fadeIn base-img" data-wow-delay="1s"
-                  />
-  
-          </div>
-          <div class="work-intro" style="position:relative; z-index:3;">
-            <h3 class="work-title">BLMP Advantage</h3>
-            <p class="hover-reveal">C4V’s patented Bio-Mineralizing process adds 15–20% energy density to any base cell chemistry and enables a longer cycle life</p>
-          </div>
-        </a>
+
+            <li class="work-item mix photography">
+        
+          
+            
+           
+              <canvas id="chart1"></canvas>
+          
+          
+         
+        
       </li>
+      
+        <canvas id="chart1"></canvas>
+
+        
+    
 
       <!-- Charging Infrastructure (External Page) -->
        <li class="work-item mix photography">
-        <a href="" class="work-lightbox-link">
-          <div class="work-img">
-            <div class="work-img-bg wow-p scalexIn"></div>
-            <img src="images/clients-logos/graph2.png" alt="Green Leaf"
-                 class="wow-p fadeIn base-img" data-wow-delay="1s"
-                  />
-  
-          </div>
-          <div class="work-intro" style="position:relative; z-index:3;">
-            <h3 class="work-title">BLMP Advantage</h3>
-            <p class="hover-reveal">C4V’s patented Bio-Mineralizing process adds 15–20% energy density to any base cell chemistry and enables a longer cycle life</p>
-          </div>
-        </a>
+       <canvas id="chart2"></canvas>
+
       </li>
+
+          <li class="work-item mix photography">
+       <canvas id="chart3"></canvas>
+
+      </li>
+    
+
+          <li class="work-item mix photography">
+       <canvas id="chart4"></canvas>
+
+      </li>
+    
     
 
       <!-- Electric boat (External Page) -->
@@ -1164,6 +1167,7 @@ Vertiv, and Schneider
         
         </div>
         <!-- End Page Wrap -->
+
         
         
         <!-- JS -->
@@ -1389,6 +1393,80 @@ Vertiv, and Schneider
   }, true);
 })();
 </script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   <script>
+    const chartConfigs = [
+      { id: 'chart1', label: 'Small Manufacturers', data: [65, 59, 90, 10, 15, 15], color: '255, 99, 132' },
+      { id: 'chart2', label: 'Tesla',               data: [28, 48, 40, 19, 96, 27], color: '54, 162, 235' },
+      { id: 'chart3', label: 'CATL',                data: [35, 75, 60, 45, 70, 80], color: '255, 206, 86' },
+      { id: 'chart4', label: 'Near Prime',          data: [50, 60, 70, 80, 90, 100], color: '75, 192, 192' }
+    ];
+
+    chartConfigs.forEach(cfg => {
+      const ctx = document.getElementById(cfg.id).getContext('2d');
+      new Chart(ctx, {
+        type: 'radar',
+        data: {
+          labels: [
+            'Safety',
+            'Specific Energy',
+            'Specific Power',
+            'Lifespan',
+            'Cost',
+            'Fast Charge'
+          ],
+          datasets: [{
+            label: cfg.label,
+            data: cfg.data,
+            fill: true,
+            backgroundColor: `rgba(${cfg.color}, 0.2)`,
+            borderColor: `rgba(${cfg.color}, 1)`,
+            pointBackgroundColor: `rgba(${cfg.color}, 1)`,
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: `rgba(${cfg.color}, 1)`
+          }]
+        },
+        options: {
+          responsive: true,
+          animation: {
+            duration: 2000,
+            easing: 'easeInOutQuart',
+            animateRotate: true,
+            animateScale: true
+          },
+          plugins: {
+            title: {
+              display: true,
+              text: cfg.label,
+              font: { size: 16, weight: '600' },
+              color: '#333'
+            },
+            legend: { display: false }
+          },
+          scales: {
+            r: {
+              angleLines: { color: '#ccc', lineWidth: 1 },
+              grid: { color: 'rgba(0, 0, 0, 0.05)' },
+              pointLabels: { color: '#555', font: { size: 12 } },
+              ticks: {
+                stepSize: 20,
+                backdropColor: 'transparent',
+                color: '#666',
+                font: { size: 10 }
+              },
+              suggestedMin: 0,
+              suggestedMax: 100
+            }
+          },
+          elements: {
+            line: { borderWidth: 3 },
+            point: { radius: 5, hoverRadius: 8 }
+          }
+        }
+      });
+    });
+  </script>
 
         
         

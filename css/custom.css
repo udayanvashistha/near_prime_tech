@@ -79,3 +79,24 @@
 .footer-social-links a:hover::before {
     background: #0081c6;
 }
+
+/* Responsive Grid for Charts */
+.chart-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Canvas Styling */
+canvas:hover {
+  background: #ffffff;
+  border-radius: 8px;
+
+  padding: 20px;
+}
+
+canvas:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
