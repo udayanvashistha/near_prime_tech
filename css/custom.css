@@ -196,3 +196,8 @@ filter: grayscale(1);
 .work-item > a {
     padding: 0 0 30px 0;
 }
+
+.banner-image-1 {
+    width: 140%;
+    margin: 50px 0px 0px -60px;
+}
