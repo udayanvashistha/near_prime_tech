@@ -177,3 +177,15 @@ canvas:hover {
     .image-box:hover .overlay .info {
       transform: translateY(0);
     }
+
+.team-item-image img
+
+ {
+ 
+   filter: grayscale(1); 
+}
+
+.team-item-decoration {
+filter: grayscale(1);
+}
+
