@@ -189,3 +189,10 @@ canvas:hover {
 filter: grayscale(1);
 }
 
+.no-mobile .team-item:hover .team-item-image:after {
+    background: #0081c6d1;
+}
+
+.work-item > a {
+    padding: 0 0 30px 0;
+}
